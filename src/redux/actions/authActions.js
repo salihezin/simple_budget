@@ -84,6 +84,7 @@ export const loginWithGoogle = () => (dispatch) => {
     signInWithPopup(auth, provider)
         .then((result) => {
             const user = result.user;
+            dispatch(setUser(user));
         }).catch((error) => {
         console.log('Giriş hatası:', error);
     });
@@ -96,18 +97,3 @@ export const logoutUser = () => (dispatch) => {
     });
 };
 
-
-export const getUser = () => (dispatch) => {
-    auth.onAuthStateChanged(function (user) {
-        if (user) {
-            dispatch(
-                setUser({
-                    userId: auth.currentUser.uid,
-                    user: {data: auth.currentUser.providerData[0]},
-                })
-            );
-        } else {
-            dispatch(resetUser());
-        }
-    });
-};

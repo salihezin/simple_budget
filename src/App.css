@@ -22,10 +22,24 @@
   width: 80%;
 }
 
+.h-80 {
+  height: 80%;
+}
+
 .w-100 {
   width: 100%;
 }
 
 .p24 {
   padding: 24px;
+}
+
+.ml8 {
+  margin-left: 8px;
+}
+
+.fullCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -8,7 +8,7 @@ const SignWithGoogle = () => {
     const dispatch = useDispatch();
     const handleWithGoogle = () => {
         dispatch(loginWithGoogle());
-        navigate('/');
+        navigate('/home');
     }
     return (
         <Button className="mt8 w-100" label="Google ile giriş yap" size={"large"} icon="pi pi-google"

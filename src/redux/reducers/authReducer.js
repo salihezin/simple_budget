@@ -14,6 +14,7 @@ const authReducer = (state = initialState, { type, payload }) => {
                 isLoggedIn: true,
                 user: payload.email,
                 userId: payload.uid,
+                username: payload.displayName,
                 loginError: null,
             };
             return state;
@@ -25,6 +26,7 @@ const authReducer = (state = initialState, { type, payload }) => {
                 isLoggedIn: false,
                 user: null,
                 userId: null,
+                username: null,
                 loginError: payload,
             };
             return state;

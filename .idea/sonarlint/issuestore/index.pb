@@ -60,3 +60,11 @@ w
 G.idea/sonarlint/issuestore/f/9/f900edc44cb929c2267a16100a32851f6d5b477d,e\2\e2893d369335d49b7f0b2dc53d7c59bbec233ec8
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+O
+src/container/noRecordPanels.js,c\a\caa9bb06732837206b60af8eabf63c3f7e82f576
+P
+ src/container/noCardContainer.js,b\5\b5d8955fae797b5d1c4867da619129f443e1b16e
+Å
+Q.idea/sonarlint/securityhotspotstore/c/a/caa9bb06732837206b60af8eabf63c3f7e82f576,1\6\16799e8310c5c1e8027ce545fb2ed54dec607666
+Å
+Q.idea/sonarlint/securityhotspotstore/b/5/b5d8955fae797b5d1c4867da619129f443e1b16e,a\0\a060687f81a6bbaa117f0f213b36f92fc35ca4ce
