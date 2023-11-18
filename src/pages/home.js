@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {getDatabase, onValue, ref} from "firebase/database";
+import {getDatabase, onValue, ref, push} from "firebase/database";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../config/firebase";
-import {Divider} from 'primereact/divider';
-import {Button} from 'primereact/button';
-import {Card} from 'primereact/card';
 import NoCardContainer from "../container/noCardContainer";
 
 const Home = () => {
     const auth = useSelector(state => state.auth);
     const navigate = useNavigate();
     const [records, setRecords] = useState([]);
+    const [cards, setCards] = useState([]);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
     const app = initializeApp(firebaseConfig);
@@ -41,26 +39,22 @@ const Home = () => {
         onValue(realTimeRef, (snapshot) => {
                 const data = snapshot.val();
                 if (data) {
-                    console.log('data', data);
                     const nodes = [];
                     Object.keys(data).forEach((key) => {
                         nodes.push(data[key]);
                     });
-                    setRecords(nodes);
+                    setCards(nodes);
                 }
             }
         );
     }, [auth]);
 
-    console.log('records', records);
-    console.log('auth', auth);
-
-
+    const hasCards = cards.length > 0;
 
     return (
         <div style={{marginLeft: 80, marginRight: 80}}>
             <h1>Merhaba {auth.user?.split('@')[0]}</h1>
-            <NoCardContainer/>
+            {hasCards ? <div>has cards</div> : <NoCardContainer firebasePush={push} realTimeRef={realTimeRef}/>}
         </div>
     );
 }
