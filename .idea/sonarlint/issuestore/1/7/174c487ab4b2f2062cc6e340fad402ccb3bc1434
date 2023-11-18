@@ -5,3 +5,4 @@ cjavascript:S1481";Remove the declaration of the unused 'setRecords' variabl
 `javascript:S1854"8Remove this useless assignment to variable "setRecords".(ê‹Üëþÿÿÿÿ8¸×¸¢¾1
 ejavascript:S1481"=Remove the declaration of the unused 'windowHeight' variable.(ùçó«ýÿÿÿÿ8¸×¸¢¾1
 bjavascript:S1854":Remove this useless assignment to variable "windowHeight".(ùçó«ýÿÿÿÿ8¸×¸¢¾1
+mjavascript:S6638"JUnexpected constant truthiness on the left-hand side of a `||` expression.(ÜÜ€•8ýçö¢¾1

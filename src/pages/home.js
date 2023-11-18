@@ -15,7 +15,7 @@ const Home = () => {
 
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-    const realTimeRef = ref(database, auth.userId || 'null');
+    const realTimeRef = ref(database, 'authuserId' || 'null');
 
     useEffect(() => {
         if (!auth.user) {
@@ -54,7 +54,8 @@ const Home = () => {
     return (
         <div style={{marginLeft: 80, marginRight: 80}}>
             <h1>Merhaba {auth.user?.split('@')[0]}</h1>
-            {hasCards ? <div>has cards</div> : <NoCardContainer firebasePush={push} realTimeRef={realTimeRef}/>}
+            {hasCards ? <div>has cards</div> :
+                <NoCardContainer firebasePush={push} realTimeRef={realTimeRef} navigate={navigate}/>}
         </div>
     );
 }

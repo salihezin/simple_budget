@@ -3,7 +3,8 @@ import {Divider} from "primereact/divider";
 import {Button} from "primereact/button";
 import {Card} from "primereact/card";
 
-const NoCardContainer = ({firebasePush, realTimeRef}) => {
+const NoCardContainer = props => {
+    const {firebasePush, realTimeRef, navigate} = props;
     const cardImage = type => {
         switch (type) {
             case 'cash':
@@ -66,7 +67,7 @@ const NoCardContainer = ({firebasePush, realTimeRef}) => {
                 Ya da dilerseniz aşağıdaki şablonu kullanabilirsiniz.
             </p>
             <Divider align="right">
-                <Button label="Ben ekleyeceğim" icon="pi pi-plus" className="p-button-outlined"></Button>
+                <Button label="Ben ekleyeceğim" icon="pi pi-plus" className="p-button-outlined" onClick={() => navigate('/add_cards')}></Button>
             </Divider>
             <div style={{flexDirection: 'row', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                 <Card title="Varlık" subTitle="Nakit" header={header('cash')} style={{width: '20%', marginTop: 20}}/>
