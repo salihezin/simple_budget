@@ -1,17 +1,17 @@
 import React, {useEffect, useRef, useState} from "react";
-import PasswordInput from "../component/passwordInput";
-import LoginButtonsContainer from "../container/loginButtonsContainer";
+import PasswordInput from "../../component/passwordInput";
+import LoginButtonsContainer from "../../container/loginButtonsContainer";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import EmailInput from "../component/emailInput";
+import EmailInput from "../../component/emailInput";
 import {
     emailIsNotValid,
     loginFailed,
     loginFailedToast,
     loginSuccessToast,
     passwordIsNotValid
-} from "../constants/toast";
-import {loginUser} from "../redux/actions/authActions";
+} from "../../constants/toast";
+import {loginUser} from "../../redux/actions/authActions";
 import {Toast} from 'primereact/toast';
 
 const Login = () => {
@@ -40,7 +40,6 @@ const Login = () => {
     useEffect(() => {
         if (auth.user) {
             showMessage(loginSuccessToast('Giriş başarılı. ' + auth.user));
-            navigate('/home');
         } else if (auth.loginError) {
             showMessage(loginFailedToast(auth.loginError));
         }
@@ -74,7 +73,15 @@ const Login = () => {
     };
 
     return (
-        <div className="p24" style={{paddingRight: windowWidth / 3, paddingLeft: windowWidth / 3}}>
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            width: '33%',
+            margin: 'auto',
+            marginTop: '32px',
+            marginBottom: '32px',
+        }}>
             <EmailInput email={email} setEmail={setEmail} isValid={isEmailValid}/>
             <PasswordInput
                 password={password}

@@ -10,9 +10,11 @@ const MenubarContainer = () => {
             items: [
                 {
                     label: 'Varlık Ekle',
+                    url: '/add_asset',
                 },
                 {
                     label: 'Borç Ekle',
+                    url: '/add_debt',
                 }
             ]
         },
@@ -30,7 +32,8 @@ const MenubarContainer = () => {
         }
     ];
     return (
-        <Menubar model={items} end={<Button label="Çıkış" icon="pi pi-power-off" severity="primary" text/>} style={{marginTop: 24}}/>
+        <Menubar model={items} end={<Button label="Çıkış" icon="pi pi-power-off" severity="danger" text/>}
+                 style={{marginTop: 24}}/>
     );
 }
 

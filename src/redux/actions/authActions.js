@@ -1,4 +1,4 @@
-import {RESET_USER, SET_USER, LOGIN_ERROR} from "../constants";
+import {RESET_USER, SET_USER, LOGIN_ERROR, LOGGING_IN} from "../constants";
 import {auth} from "../../config/firebase";
 import {
     createUserWithEmailAndPassword,
@@ -21,10 +21,14 @@ const loginFailed = (loginError) => ({
     payload: loginError,
 });
 
+const loggingIn = () => ({
+    type: LOGGING_IN,
+});
+
 export const registerWithEmail =
     (email, password) =>
         (dispatch) => {
-            dispatch(resetUser());
+            dispatch(loggingIn());
             createUserWithEmailAndPassword(auth, email, password)
                 .then((user) => {
                     dispatch(loginUser(email, password));
@@ -41,7 +45,7 @@ export const registerWithEmail =
 export const loginUser =
     (email, password) =>
         (dispatch) => {
-            dispatch(resetUser());
+            dispatch(loggingIn());
             signInWithEmailAndPassword(auth, email, password)
                 .then(async (user) => {
                     const usr = user.user;
@@ -49,6 +53,7 @@ export const loginUser =
                 })
                 .catch((error) => {
                     console.log('error', error);
+                    dispatch(resetUser());
                     switch (error.code) {
                         case 'auth/user-not-found':
                             dispatch(loginFailed('Böyle bir kullanıcı bulunamadı'));
@@ -79,13 +84,14 @@ export const loginUser =
         };
 
 export const loginWithGoogle = () => (dispatch) => {
-    dispatch(resetUser());
     const provider = new GoogleAuthProvider();
+    dispatch(loggingIn());
     signInWithPopup(auth, provider)
         .then((result) => {
             const user = result.user;
             dispatch(setUser(user));
         }).catch((error) => {
+        dispatch(resetUser());
         console.log('Giriş hatası:', error);
     });
 }
