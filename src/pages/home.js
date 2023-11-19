@@ -5,6 +5,10 @@ import {getDatabase, onValue, ref, push} from "firebase/database";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../config/firebase";
 import NoCardContainer from "../container/noCardContainer";
+import {Card} from "primereact/card";
+import {Tooltip} from "primereact/tooltip";
+import {Badge} from "primereact/badge";
+import AssetCard from "../container/assetCard";
 
 const Home = () => {
     const auth = useSelector(state => state.auth);
@@ -15,7 +19,7 @@ const Home = () => {
 
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-    const realTimeRef = ref(database, 'authuserId' || 'null');
+    const realTimeRef = ref(database, auth.userId || 'null');
 
     useEffect(() => {
         if (!auth.user) {
@@ -41,6 +45,7 @@ const Home = () => {
                 if (data) {
                     const nodes = [];
                     Object.keys(data).forEach((key) => {
+                        data[key].id = key;
                         nodes.push(data[key]);
                     });
                     setCards(nodes);
@@ -52,9 +57,9 @@ const Home = () => {
     const hasCards = cards.length > 0;
 
     return (
-        <div style={{marginLeft: 80, marginRight: 80}}>
+        <div style={{marginLeft: 180, marginRight: 180}}>
             <h1>Merhaba {auth.user?.split('@')[0]}</h1>
-            {hasCards ? <div>has cards</div> :
+            {hasCards ? <AssetCard cards={cards}/> :
                 <NoCardContainer firebasePush={push} realTimeRef={realTimeRef} navigate={navigate}/>}
         </div>
     );
