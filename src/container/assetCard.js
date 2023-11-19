@@ -1,7 +1,5 @@
 import React from "react";
 import {Card} from "primereact/card";
-import {Tooltip} from "primereact/tooltip";
-import {Badge} from "primereact/badge";
 import TooltipButton from "../component/tooltipButton";
 
 const AssetCard = ({ cards }) => {

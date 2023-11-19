@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {getDatabase, onValue, ref, push} from "firebase/database";
+import {getDatabase, onValue, push, ref} from "firebase/database";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../config/firebase";
 import NoCardContainer from "../container/noCardContainer";
-import {Card} from "primereact/card";
-import {Tooltip} from "primereact/tooltip";
-import {Badge} from "primereact/badge";
 import AssetCard from "../container/assetCard";
+import MenubarContainer from "../container/menubarContainer";
 
 const Home = () => {
     const auth = useSelector(state => state.auth);
@@ -58,6 +56,7 @@ const Home = () => {
 
     return (
         <div style={{marginLeft: 180, marginRight: 180}}>
+            <MenubarContainer />
             <h1>Merhaba {auth.user?.split('@')[0]}</h1>
             {hasCards ? <AssetCard cards={cards}/> :
                 <NoCardContainer firebasePush={push} realTimeRef={realTimeRef} navigate={navigate}/>}
